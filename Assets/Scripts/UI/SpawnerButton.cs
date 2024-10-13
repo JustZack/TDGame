@@ -1,27 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class SpawnerButton : MonoBehaviour, IClickable
 {
-    public SpawnerButtonData data;
+    public TowerData data;
     private static PlacementLayer PlacementLayer = null;
+    public static void setPlacementLayer(PlacementLayer newPlacementLayer) {
+        SpawnerButton.PlacementLayer = newPlacementLayer;
+    }
     public void OnPointerDown(PointerEventData eventData) {
-        SpawnerButton.PlacementLayer.StartPlacement(Instantiate(data.tower));
+        SpawnerButton.PlacementLayer.StartPlacement(data);
     }
 
     public void OnPointerUp(PointerEventData eventData) {
 
     }
 
+    public bool isEnabled() {
+        return true;
+    }
+
     public void Start() {
-        if (SpawnerButton.PlacementLayer == null) {
-            GameObject placementObject = GameObject.FindWithTag("PlacementLayer");
-            if (placementObject != null) SpawnerButton.PlacementLayer = placementObject.GetComponent<PlacementLayer>();
-            else throw new System.Exception("No placement layer found in scene. Be sure your object is tagged with `PlacementLayer` and has the PlacementLayer controller.");
-        }
+
     }
 
     public void Update() {

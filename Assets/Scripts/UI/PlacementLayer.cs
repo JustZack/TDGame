@@ -5,18 +5,25 @@ using UnityEngine.EventSystems;
 
 public class PlacementLayer : MonoBehaviour
 {
-    public GameObject toPlace;
+    private PlaceableObject placeable;
+    private PlaceableObjectController controller;
+    private GameObject placing;
     public bool isPlacing = false;
 
-    public void StartPlacement(GameObject placeableObject) {
+    public void StartPlacement(PlaceableObject placeable) {
         this.isPlacing = true;
-        this.toPlace = placeableObject;
+        this.placeable = placeable;
+        this.placing = placeable.Instantiate();
+        this.controller = this.placing.GetComponent<PlaceableObjectController>();
     }
 
     public void StopPlacement() {
+        this.controller.StopPlacement();
+        
         this.isPlacing = false;
-        this.toPlace = null;
-        Debug.Log("placed");
+        this.placeable = null;
+        this.controller = null;
+        this.placing = null;
     }
 
     // Start is called before the first frame update
@@ -40,6 +47,6 @@ public class PlacementLayer : MonoBehaviour
         Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
 
         // Update the object's position
-        toPlace.transform.position = worldPosition;
+        this.placing.transform.position = worldPosition;
     }
 }

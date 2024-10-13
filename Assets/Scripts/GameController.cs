@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class GameController : MonoBehaviour
 {
+    public Camera Camera;
+    public static GameObject PlacementLayer;
     public Transform[] waypoints;
     public Transform spawnPoint;
     public GameObject enemyPrefab;
@@ -17,12 +20,32 @@ public class GameController : MonoBehaviour
     {
         EnemyController.setWaypoints(this.waypoints);
         enemies = new Queue<GameObject>();
+        this.CreatePlacementLayer();
+    }
+
+    void CreatePlacementLayer() {
+        GameObject placementLayer = new GameObject("PlacementLayer");
+        PlacementLayer placementScript = placementLayer.AddComponent<PlacementLayer>();
+        BoxCollider2D placementCollider = placementLayer.AddComponent<BoxCollider2D>();
+
+        if (this.Camera.orthographic) {
+            float camHeight = this.Camera.orthographicSize * 2;
+            float camWidth = camHeight * this.Camera.aspect;
+
+            placementLayer.transform.position = this.Camera.transform.position;
+            placementLayer.transform.localScale = new Vector3(camWidth, camHeight, 1);
+            placementCollider.transform.position = this.Camera.transform.position;
+            placementCollider.size = new Vector2(camWidth, camHeight);
+        } else {
+            throw new System.Exception("Provided camera should be orthographic.");
+        }
+
+        SpawnerButton.setPlacementLayer(placementScript);
     }
 
     void SpawnEnemy() {
         this.lastSpawn = Time.time;
         GameObject enemy = Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
-        enemy.AddComponent<EnemyController>();
         enemies.Enqueue(enemy);
     }
     bool waitingForSpawnCooldown() {

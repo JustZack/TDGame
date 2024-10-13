@@ -9,10 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c71f6e96595289b418a7169fb599a838, type: 3}
-  m_Name: Archer
+  m_Script: {fileID: 11500000, guid: 8e5dd16518da76b40bfe2dd0c19adae3, type: 3}
+  m_Name: Arrow
   m_EditorClassIdentifier: 
-  iconPath: None
-  name: Archer
-  cost: 150
-  tower: {fileID: 350342915010629577, guid: 29e78a75850c34d428d512951e501056, type: 3}
+  prefab: {fileID: 8409071344470126525, guid: ee48d7b74e677014aa426efaa1453557, type: 3}
+  size: 10
+  angleOffset: 90
+  range: 50
+  speed: 0.25
+  isHoming: 0

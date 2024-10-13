@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8c9a34e852b4b74cb3d9c025e208f7a, type: 3}
+  m_Name: Bow
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 2856933869515919116, guid: 752c43f156ff1ea4da8519ed3c848165, type: 3}
+  size: 0.5
+  name: Bow
+  cooldown: 5
+  projectile: {fileID: 11400000, guid: d9eae72f628687745b6e3a4bf7f34154, type: 2}
