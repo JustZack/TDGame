@@ -9,7 +9,7 @@ public class WeaponData : PrefabableObject {
         GameObject weapon = base.Instantiate();
         weapon.transform.localScale *= this.size;
         WeaponController wc = weapon.AddComponent<WeaponController>();
-        wc.data = this;
+        wc.data = this.Copy<WeaponData>();
         return weapon;
     }
 }

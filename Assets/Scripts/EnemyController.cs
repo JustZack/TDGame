@@ -2,18 +2,15 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    int Health;
-    int Hits = 0;
+    public EnemyData data;
     int currentWaypointIndex = 0;
-    float speed = 5f;
     static Transform[] waypoints;
     public static void setWaypoints(Transform[] waypoints) {
         EnemyController.waypoints = waypoints;
     }
+
     // Start is called before the first frame update
-    void Start()
-    {
-        this.Health = 50;
+    void Start() {
     }
 
     // Update is called once per frame
@@ -22,7 +19,7 @@ public class EnemyController : MonoBehaviour
         // Move towards the current waypoint
         Transform targetWaypoint = EnemyController.waypoints[this.currentWaypointIndex];
         Vector3 direction = targetWaypoint.position - transform.position;
-        transform.Translate(direction.normalized * speed * Time.deltaTime, Space.World);
+        transform.Translate(direction.normalized * data.speed * Time.deltaTime, Space.World);
 
         // Check if enemy has reached the waypoint
         if (Vector3.Distance(transform.position, targetWaypoint.position) < 0.1f)

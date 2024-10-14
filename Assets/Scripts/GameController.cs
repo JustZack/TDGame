@@ -9,9 +9,9 @@ public class GameController : MonoBehaviour
     public static GameObject PlacementLayer;
     public Transform[] waypoints;
     public Transform spawnPoint;
-    public GameObject enemyPrefab;
+    public EnemyData enemyData;
     float lastSpawn = 0;
-    float spawnCooldown = 1;
+    float spawnCooldown = .1f;
     public Difficulty difficulty = Difficulty.Easy;
     public Queue<GameObject> enemies;
 
@@ -45,7 +45,9 @@ public class GameController : MonoBehaviour
 
     void SpawnEnemy() {
         this.lastSpawn = Time.time;
-        GameObject enemy = Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
+        GameObject enemy = enemyData.Instantiate();
+        enemy.transform.position = spawnPoint.position;
+        enemy.transform.rotation = spawnPoint.rotation;
         enemies.Enqueue(enemy);
     }
     bool waitingForSpawnCooldown() {

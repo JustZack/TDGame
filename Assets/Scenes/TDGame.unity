@@ -348,7 +348,7 @@ MonoBehaviour:
   - {fileID: 138759402}
   - {fileID: 1575879585}
   spawnPoint: {fileID: 1538276889}
-  enemyPrefab: {fileID: 772067696577449076, guid: 7a78820092914dc49baef6901636b032, type: 3}
+  enemyData: {fileID: 11400000, guid: b7d66a53f69e3434d87c7b597c2aa6ec, type: 2}
   difficulty: 0
 --- !u!4 &959813753
 Transform:

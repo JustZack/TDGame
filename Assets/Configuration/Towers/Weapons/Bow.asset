@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Bow
   m_EditorClassIdentifier: 
   prefab: {fileID: 2856933869515919116, guid: 752c43f156ff1ea4da8519ed3c848165, type: 3}
+  prefabAngleOffset: -90
   size: 0.5
   name: Bow
   cooldown: 5

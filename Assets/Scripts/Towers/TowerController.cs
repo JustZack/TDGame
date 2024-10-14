@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,20 +12,19 @@ public class TowerController : PlaceableObjectController {
         GameObject nearest = Find.NearestWithTag(this.transform.position, "Enemy", data.range);
         return nearest;
     } 
+    private void setWeaponTransform(GameObject weapon) {
+        //weapon.transform.rotation = Quaternion.Euler(new Vector3(0, 0, this.transform.rotation.z));
+        weapon.transform.position = this.transform.position + new Vector3(0, 0, -1);
+    }
     private void shiftWeapons() {
-        foreach (GameObject weapon in this.weapons) {
-            weapon.transform.position = this.transform.position;
-            weapon.transform.rotation = this.transform.rotation;
-        }
+        foreach (GameObject weapon in this.weapons) this.setWeaponTransform(weapon);
     }
     private void initWeapons() {
         this.weapons = new List<GameObject>();
         this.controllers = new List<WeaponController>();
         foreach (WeaponData wd in data.weapons) {
             GameObject weapon = wd.Instantiate();
-            weapon.transform.position = this.transform.position;
-            weapon.transform.rotation = this.transform.rotation;
-
+            this.setWeaponTransform(weapon);
             this.weapons.Add(weapon);
             this.controllers.Add(weapon.GetComponent<WeaponController>());
         }
@@ -41,6 +39,7 @@ public class TowerController : PlaceableObjectController {
             if (nearest != null) {
                 foreach (WeaponController wc in this.controllers) {
                     if (wc.CanFire()) wc.FireAt(nearest);
+                    else wc.LookAt(nearest);
                 }
             }
         } else {

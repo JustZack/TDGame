@@ -15,5 +15,6 @@ public class ShowForwardVector : MonoBehaviour
 
         // Optionally, draw a small sphere at the endpoint for visualization
         Gizmos.DrawSphere(transform.position + transform.forward * lineLength, 0.1f);
+        Gizmos.DrawSphere(transform.position + transform.up * lineLength/2, 0.1f);
     }
 }

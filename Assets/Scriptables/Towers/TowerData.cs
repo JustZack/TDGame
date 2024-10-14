@@ -12,7 +12,7 @@ public class TowerData : PlaceableObject {
     public override GameObject Instantiate() {
         GameObject tower = base.Instantiate();
         TowerController tc = tower.AddComponent<TowerController>();
-        tc.data = this;
+        tc.data = this.Copy<TowerData>();
         return tower;
     }
 }
