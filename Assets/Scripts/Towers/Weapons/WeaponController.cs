@@ -1,9 +1,9 @@
 using UnityEngine;
 
-public class WeaponController : MonoBehaviour {
+public abstract class WeaponController : MonoBehaviour {
     public WeaponData data;
     private float lastUse = 0;
-    public bool CanFire() {
+    public bool CanAttack() {
         return this.lastUse + data.cooldown < Time.time;
     }
     public void LookAt(GameObject toLook) {
@@ -13,18 +13,10 @@ public class WeaponController : MonoBehaviour {
         // Apply the rotation by setting the Z angle
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle + data.prefabAngleOffset));
     }
-    public void FireAt(GameObject toShoot) {
+    public virtual void Attack(GameObject toAttack) {
         this.lastUse = Time.time;
-        GameObject projectile = data.projectile.Instantiate();
-        Destroy(projectile, data.projectile.lifespan);
-        projectile.transform.position = this.transform.position;
-        ProjectileController pc = projectile.GetComponent<ProjectileController>();
-        pc.SetTarget(toShoot);
-        pc.Fire();
-
-        this.LookAt(toShoot);
+        this.LookAt(toAttack);
     }
-
     public void Start() {
     }
 

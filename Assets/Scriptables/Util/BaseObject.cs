@@ -1,11 +1,10 @@
 using UnityEngine;
 using System.Reflection;
 
-public class BaseObject : ScriptableObject {
-        public T Copy<T>() where T : BaseObject, new()
-    {
+public abstract class BaseObject : ScriptableObject {
+    public T Copy<T>() where T : BaseObject, new() {
         // Create a new instance of the derived class
-        T copy = new T();
+        T copy = CreateInstance<T>();
 
         // Get all fields of the current instance
         FieldInfo[] fields = this.GetType().GetFields(BindingFlags.Public | BindingFlags.Instance);
@@ -17,6 +16,8 @@ public class BaseObject : ScriptableObject {
         }
         return copy;
     }
+
+    public abstract GameObject Instantiate();
 }
 
     

@@ -9,7 +9,7 @@ public class TowerController : PlaceableObjectController {
 
     }
     public GameObject findNearestEnemy() {
-        GameObject nearest = Find.NearestWithTag(this.transform.position, "Enemy", data.range);
+        GameObject nearest = Find.NearestWithTag(this.transform.position, Tags.Enemy, data.range);
         return nearest;
     } 
     private void setWeaponTransform(GameObject weapon) {
@@ -38,7 +38,7 @@ public class TowerController : PlaceableObjectController {
             GameObject nearest = this.findNearestEnemy();
             if (nearest != null) {
                 foreach (WeaponController wc in this.controllers) {
-                    if (wc.CanFire()) wc.FireAt(nearest);
+                    if (wc.CanAttack()) wc.Attack(nearest);
                     else wc.LookAt(nearest);
                 }
             }

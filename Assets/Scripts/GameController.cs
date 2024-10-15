@@ -24,7 +24,7 @@ public class GameController : MonoBehaviour
     }
 
     void CreatePlacementLayer() {
-        GameObject placementLayer = new GameObject("PlacementLayer");
+        GameObject placementLayer = new GameObject(Tags.PlacementLayer);
         PlacementLayer placementScript = placementLayer.AddComponent<PlacementLayer>();
         BoxCollider2D placementCollider = placementLayer.AddComponent<BoxCollider2D>();
 
