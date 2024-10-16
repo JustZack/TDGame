@@ -7,6 +7,6 @@ public class ShooterController : WeaponController {
         projectile.transform.position = this.transform.position;
         ProjectileController pc = projectile.GetComponent<ProjectileController>();
         pc.SetTarget(toAttack);
-        pc.Fire();
+        pc.Trigger();
     }
 }

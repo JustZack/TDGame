@@ -3,6 +3,22 @@ using UnityEngine;
 public abstract class AttackController : MonoBehaviour {
     public AttackData data;
     public GameObject target;
+    private bool triggered = false;
+    public void Trigger() {
+        this.triggered = true;
+    }   
+    public bool isTriggered() {
+        return this.triggered;
+    }
+    public abstract bool shouldDestroy();
+    public bool didDestroy() {
+        if (this.shouldDestroy()) {
+            Destroy(this.gameObject);
+            return true;
+        } else {
+            return false;
+        }
+    }
     public void SetTarget(GameObject target) {
         this.target = target;
         this.lookAtTarget();

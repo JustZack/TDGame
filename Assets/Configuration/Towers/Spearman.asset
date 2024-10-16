@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2a7e1e859902fbd43b7b54cc87e353cb, type: 3}
-  m_Name: Archer
+  m_Name: Spearman
   m_EditorClassIdentifier: 
   prefab: {fileID: 350342915010629577, guid: 29e78a75850c34d428d512951e501056, type: 3}
   prefabAngleOffset: 0

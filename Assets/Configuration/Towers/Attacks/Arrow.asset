@@ -18,6 +18,8 @@ MonoBehaviour:
   range: 50
   speed: 10
   isHoming: 0
-  lifespan: 100
   damage: 200
   damageGiven: 0
+  destroyWhenZeroDamage: 1
+  spawnTime: 0
+  lifespan: 15

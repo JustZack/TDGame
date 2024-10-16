@@ -8,7 +8,7 @@ public abstract class PrefabableObject : BaseObject {
     public override GameObject Instantiate() {
         GameObject instance = Instantiate(this.prefab);
         instance.transform.localScale *= this.size;
-        //instance.AddComponent<ShowForwardVector>();
+        instance.AddComponent<ShowForwardVector>();
         return instance;
     }
 }
